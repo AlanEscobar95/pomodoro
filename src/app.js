@@ -33,8 +33,9 @@ const handlebars = exphbs.create({
     layoutsDir: path.join(__dirname, 'views', 'layouts'),
     partialsDir: path.join(__dirname, 'views', 'partials'),
     extname: '.hbs',
-    helpres: require('./lib/handlebars')
+    helpers: require('./lib/handlebars')
 })
+
 
 /// archivos compartidos
 app.set('port', process.env.PORT || 4200);
@@ -79,5 +80,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 //public 
 
 //routers
-
 module.exports = app;
