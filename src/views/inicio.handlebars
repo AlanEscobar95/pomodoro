@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/src/public/css/estilos.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link href='https://fonts.googleapis.com/css?family=Reem Kufi' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
+<!--<head>
+    <title>Lista de Usuarios</title>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+    <div>
+        {{#each lista}}
+        <h1>Hola {{nombreUsuario}}</h1>
+        {{/each}}
+    </div>!-->
+
+
+<!--    CONTENEDOR PRINCIPAL   !-->
+
+<div id="contenedor" >
+<!--    CUADRO Y CONTENIDO DERECHO   !-->
+    <div id="derecha">
+        <div id="nube"> 
+            <img  src="/src/public/img/nube.png"  >
+        </div>
+
+         <div id="ovalo">
+                <img src="/src/public/img/nube (1).png">
+            </div>
+
+            <div id="text1">
+                <h1>POMODORO</h1>
+            </div>
+
+            <div id="icon">
+                <img src="/src/public/img/pomodoro (3).png">
+            </div>
+
+           
+
+            <div id="text2">
+                <h1>Focused time, amazing <br>results</h1>
+            </div>
+
+        </div>
+        
+<!--    CUADRO Y CONTENIDO IZQUIERDO     !-->
+    <div id="izquierda">
+
+        <div id="figuras">
+            <div id="circulo_izquierda"></div>
+            <div id="circulo_centro"></div>
+            <div id="circulo_derecha"></div>
+        </div>
+
+
+
+
+        <div id="text3">
+            <h1>¡Welcome to Pomodoro time!</h1>
+            <div id="icon2">
+                <img src="/src/public/img/pomodoro (1).png">
+            </div>
+        </div>
+
+        <br>
+<!--    INPUTS   !-->
+    <div id="datos">
+        <div id="usuario">
+           <i class="fa fa-user-circle" aria-hidden="true"></i><input type="text" placeholder="user name or email">       
+        </div>
+
+        <br><br>
+
+        <div id="clave" >
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i><input type="password" placeholder="password">       
+        </div>
+    </div>
+        <br>
+<!--    BOTONES      !-->       
+    <div id="botones">
+        <div id="boton1">
+            <button class="boton-celeste">LogIn</button>
+        </div>
+
+        <br>
+
+        <div id="text4"> 
+            <a>Are you new user?</a>
+        </div>
+        <br><br>
+        <div id="boton2">
+            <a href="./sigin.handlebars" class="boton">SigIn Up</a>
+        </div>
+    </div>
+    </div>
+</div>
+    {{{siginup}}}
+</body>
+</html>

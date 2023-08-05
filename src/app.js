@@ -33,8 +33,9 @@ const handlebars = exphbs.create({
     layoutsDir: path.join(__dirname, 'views', 'layouts'),
     partialsDir: path.join(__dirname, 'views', 'partials'),
     extname: '.hbs',
-    helpres: require('./lib/handlebars')
+    helpers: require('./lib/handlebars')
 })
+
 
 /// archivos compartidos
 app.set('port', process.env.PORT || 4200);
@@ -43,7 +44,9 @@ app.engine('.hbs', handlebars.engine);
 app.set('view engine', '.hbs');
 /// archivos compartidos
 
-
+app.get('/siginup',(req, res)=>{
+    res.sendFile(path.resolve(__dirname, 'siginup.handlebars'));
+  });
 //midlewars
 app.use(fileUpload({
     createParentPath: true, // Crea los directorios necesarios para almacenar los archivos si no existen
@@ -76,8 +79,10 @@ app.use((req, res, next) => {
 
 //public
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/src/public', express.static('src/public')); //ruta estilos.css
+
+  
 //public 
 
 //routers
-
 module.exports = app;
