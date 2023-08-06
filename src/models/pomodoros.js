@@ -1,6 +1,7 @@
-const pomodoros = (sequelize, DataTypes) => {
+const { DataTypes} = require("sequelize");
+const pomodoros = (sequelize) => {
     return sequelize.define('pomodoros', {
-        idPomodoros:{
+        id:{
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true

@@ -2,7 +2,6 @@ const {createPool} = require ("mysql2")
 const {promisify} = require ("util")
 const dotenv = require('dotenv');
 
-
 dotenv.config();
 
 const{ MYSQLHOST, MYSQLUSER, MYSQLPASSWORD, MYSQLDATABASE, MYSQLPORT, MYSQL_URI, } = require ("../keys");

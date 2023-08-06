@@ -1,35 +1,35 @@
-const tareas = (sequelize, DataTypes) => {
+const { DataTypes } = require("sequelize");
+const tareas = (sequelize) => {
     return sequelize.define('tareas', {
-        idTareas:{
+        id:{
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
 
-        nombreTarea:{
+        nombre:{
          type: DataTypes.STRING,
         },
 
-        descripcionTarea:{
+        descripcion:{
          type:DataTypes.STRING(1500),
         },
         
-        estadoTarea: {
+        estado: {
         type:DataTypes.STRING(50),
         },
-        
-        crearTarea:{
+        crearTarea: {
             type: 'TIMESTAMP',
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
             allowNull: false
-        },
-        actualizarTarea:{
+          },
+          actualizarTarea: {
             type: 'TIMESTAMP',
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
             allowNull: false
-        }
-        },{
-            timestamps: false,
+          }
+        }, {
+          timestamps: false,
         });
 };
 

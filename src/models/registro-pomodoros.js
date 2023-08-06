@@ -1,6 +1,7 @@
-const registro_pomodoros = (sequelize, DataTypes) => {
-    return sequelize.define('registro_pomodoros', {
-        idRegistro:{
+const { DataTypes} = require("sequelize");
+const registroPomodoros = (sequelize) => {
+    return sequelize.define('registro-pomodoros', {
+        id:{
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
@@ -33,4 +34,4 @@ const registro_pomodoros = (sequelize, DataTypes) => {
         });
 };
 
-module.exports = registro_pomodoros;
+module.exports = registroPomodoros;

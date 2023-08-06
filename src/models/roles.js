@@ -1,12 +1,13 @@
-const roles = (sequelize, DataTypes) => {
+const { DataTypes} = require("sequelize");
+const roles = (sequelize) => {
     return sequelize.define('roles', {
-        idRoles:{
+        id:{
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
 
-        nombreRol: {
+        nombre: {
            type: DataTypes.STRING(99),
         },
             

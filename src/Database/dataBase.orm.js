@@ -24,48 +24,66 @@ sequelize.sync({ force: false })
 	});
 
 	const usuariosModelo = require("../models/usuarios");
+	const usuariosRolesModelo = require("../models/roles-usuarios");
 	const rolesModelo = require("../models/roles");
 	const tareasModelo = require("../models/tareas");
-	const registro_pomodorosModelo = require("../models/registro_pomodoros");
+	const registroPomodorosModelo = require("../models/registro-pomodoros");
 	const pomodorosModelo = require("../models/pomodoros");
 	const miembrosModelo = require("../models/miembros");
-	const miembros_tareasModelo = require("../models/miembros_tareas");
+	const miembrosTareasModelo = require("../models/miembros-tareas");
 	const gruposModelo = require("../models/grupos");
-	
 
 //sincronia
+
+//Relacion entre usuarios y roles
 const usuarios = usuariosModelo(sequelize, Sequelize);
 const roles = rolesModelo(sequelize, Sequelize);
+const usuariosRoles= usuariosRolesModelo(sequelize, Sequelize);
 
-usuarios.hasMany(roles)
-roles.belongsTo(usuarios)
+usuarios.hasMany(usuariosRoles)
+usuariosRoles.belongsTo(usuarios)
 
+roles.hasMany(usuariosRoles)
+usuariosRoles.belongsTo(roles)
+
+//Relacion entre usuarios y roles
+
+//Relacion entre grupos y miembros
 const grupos = gruposModelo(sequelize, Sequelize);
 const miembros = miembrosModelo(sequelize, Sequelize);
 
-grupos.hasMany(miembros)
-miembros.belongsTo(grupos)
+grupos.hasMany(miembros);
+miembros.belongsTo(grupos);
+//Relacion entre grupos y miembros
 
-const pomodoros = pomodorosModelo(sequelize, Sequelize);
-const registroPomodoros = registro_pomodorosModelo(sequelize, Sequelize);
-
-pomodoros.belongsTo(registroPomodoros)
-registroPomodoros.hasMany(pomodoros)
-
-
+//Relacion entre miembros y tareas
 const tareas = tareasModelo(sequelize, Sequelize);
-const miembros_tareas = miembros_tareasModelo(sequelize, Sequelize);
+const miembrosTareas = miembrosTareasModelo(sequelize, Sequelize);
 
-miembros_tareas.belongsTo(tareas)
-tareas.hasMany(miembros_tareas)
+miembros.hasMany(miembrosTareas);
+miembrosTareas.belongsTo(miembros);
 
-//Relacion entre tareas y pomodoros
-tareas.belongsTo(pomodoros)
-pomodoros.hasMany(tareas)
+tareas.hasMany(miembrosTareas);
+miembrosTareas.belongsTo(tareas);
+//Relacion entre miembros y tareas
 
-//Relacion entre miembros y miembros_tareas
-miembros_tareas.belongsTo(miembros)
-miembros.hasMany(miembros_tareas)
+//Relacion entre pomodoros y registro-pomodoros
+const pomodoros = pomodorosModelo(sequelize, Sequelize);
+const registroPomodoros = registroPomodorosModelo(sequelize, Sequelize);
+
+pomodoros.hasMany(registroPomodoros);
+registroPomodoros.belongsTo(pomodoros);
+//Relacion entre pomodoros y registro-pomodoros
+
+//Relacion entre miembros y pomodoros
+miembros.hasMany(pomodoros);
+pomodoros.belongsTo(miembros);
+//Relacion entre miembros y pomodoros
+
+//Relacion entre tareas y grupos
+grupos.hasMany(tareas);
+tareas.belongsTo(grupos);
+//Relacion entre tareas y grupos
 
 module.exports = {
   sequelize,
@@ -74,7 +92,7 @@ module.exports = {
   grupos: gruposModelo(sequelize, Sequelize),
   miembros: miembrosModelo(sequelize, Sequelize),
   pomodoros: pomodorosModelo(sequelize, Sequelize),
-  registroPomodoros: registro_pomodorosModelo(sequelize, Sequelize),
+  registroPomodoros: registroPomodorosModelo(sequelize, Sequelize),
   tareas: tareasModelo(sequelize, Sequelize),
-  miembros_tareas: miembros_tareasModelo(sequelize, Sequelize),
+  miembrosTareas: miembrosTareasModelo(sequelize, Sequelize),
 };

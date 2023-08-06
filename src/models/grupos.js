@@ -1,16 +1,17 @@
-const grupos = (sequelize, DataTypes) => {
+const { DataTypes} = require("sequelize");
+const grupos = (sequelize) => {
     return sequelize.define('grupos', {
-        idGrupos:{
+        id:{
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
 
-        nombreGrupo: {
+        nombre: {
             type: DataTypes.STRING(99),
         },
 
-        descripcionGrupo: {
+        descripcion: {
             type: DataTypes.STRING(1500),
         },
 

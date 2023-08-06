@@ -1,31 +1,8 @@
-const express = require("express");
-const { urlencoded } = require("express");
-const exphbs = require("express-handlebars");
-const path = require("path");
+require ('dotenv').config();
 
-const app = express();
-const PORT = 4000;
-const inicioCtl = require('./controllers/inicio.controller');
+const app = require('./server.js');
+require('./Database/dataBase.sql.js');
 
-app.use(express.json());
-app.use(urlencoded({ extended: true }));
-
-// Configurar el motor de plantillas Handlebars
-const handlebars = exphbs.create({
-    defaultLayout: 'main',
-    layoutsDir: path.join(__dirname, 'views', 'layouts'),
-    partialsDir: path.join(__dirname, 'views', 'partials'),
-    extname: '.hbs'
-});
-
-app.engine("handlebars", handlebars.engine);
-app.set("view engine", "handlebars");
-app.set('views', path.resolve(__dirname, 'views'));
-
-// Ruta principal
-app.get('/', inicioCtl.mostrar);
-
-// Iniciar el servidor
-app.listen(PORT, () => {
-    console.log(`Servidor en el Puerto ${PORT}`);
+app.listen(app.get('port'), () => {
+  console.log('Server listening on port', app.get('port'));
 });

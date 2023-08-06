@@ -1,12 +1,13 @@
-const miembros = (sequelize, DataTypes) => {
+const { DataTypes} = require("sequelize");
+const miembros = (sequelize) => {
     return sequelize.define('miembros', {
-        idMiembros:{
+        id:{
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
 
-        nombreMiembro: {
+        nombre: {
             type: DataTypes.STRING(99),
         },
 

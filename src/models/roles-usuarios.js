@@ -1,27 +1,18 @@
 const { DataTypes} = require("sequelize");
-const usuarios = (sequelize) => {
-    return sequelize.define('usuarios', {
+const usuariosRoles = (sequelize) => {
+    return sequelize.define('usuarios-roles', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
       
-      nombre: {
-        type: DataTypes.STRING(99), // Corrección aquí
-      },
-      correo: {
-        type: DataTypes.STRING, // Corrección aquí
-      },
-      password: {
-        type: DataTypes.STRING,
-      },
-      crearUsuario: {
+      crearUsuarioRol: {
         type: 'TIMESTAMP',
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: false
       },
-      actualizarUsuario: {
+      actualizarUsuarioRol: {
         type: 'TIMESTAMP',
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: false
@@ -31,5 +22,5 @@ const usuarios = (sequelize) => {
     });
   };
   
-  module.exports = usuarios;
+  module.exports = usuariosRoles;
   
