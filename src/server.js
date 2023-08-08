@@ -47,12 +47,15 @@ app.use(flash());
 // Variables globales
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
     next();
 });
 
 // Rutas
-app.use(require('./routes/index.routes.js'));
-app.use(require('./routes/tareas.routes.js'));
+app.use(require('./routes/index.routes'));
+app.use(require('./routes/tareas.routes'));
+app.use(require('./routes/users.routes'));
+
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
