@@ -1,20 +1,20 @@
 <div class="row">
-    {{#each tareas}}
-    <br>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title d-flex justify-content-between align-items-center">
-                    {{nombre}}
-                    <a href="/tareas/editar/{{id}}"><i class="fa fa-edit"></i></a></h4>
-                <p>{{descripcion}}</p>
-                <p>{{estado}}</p>
-                <form action="/tareas/delete/{{id}}?_method=DELETE" method="POST">
-                <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-danger btn-block btn-sm">Delete</button>
-                </form>
-            </div>
-        </div>
+  {{#each tareas}}
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title d-flex justify-content-between align-items-center">
+          {{ nombre }} <a href="/tareas/editar/{{id}}"><i class="fas fa-edit"></i></a>
+        </h4>
+        <p>{{ descripcion }} </p>
+        <p>{{estado}}</p>
+        <!-- DELETE REQUEST -->
+        <form action="/tareas/delete/{{id}}?_method=DELETE" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="btn btn-danger btn-block btn-sm">Delete</button>
+        </form>
+      </div>
     </div>
-    {{/each}}
+  </div>
+  {{/each}}
 </div>

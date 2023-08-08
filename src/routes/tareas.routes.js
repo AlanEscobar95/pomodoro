@@ -15,7 +15,7 @@ router.get('/tareas',renderTareas);
 router.get('/tareas/editar/:id', renderEditForm);
 
 // Actualizar tarea
-router.post('/tareas/actualizar/:id', actualizarTarea);
+router.put('/tareas/actualizar/:id', actualizarTarea);
 
 // Eliminar Tarea
 router.delete('/tareas/delete/:id', deleteTarea );
