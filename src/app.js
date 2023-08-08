@@ -1,4 +1,4 @@
-const express = require('express');
+/*const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const exphbs = require('express-handlebars');
@@ -80,4 +80,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 //public 
 
 //routers
-module.exports = app;
+module.exports = app;*/

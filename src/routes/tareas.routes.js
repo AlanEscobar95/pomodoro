@@ -2,7 +2,7 @@ const {Router} = require('express');
 const router = Router();
 
 const {renderTareaForm,crearNuevaTarea,renderTareas,
-       renderEditarTarea,actualizarTarea,eliminarTarea} = require('../controllers/tareas.controller');
+       renderEditForm,actualizarTarea,deleteTarea} = require('../controllers/tareas.controller');
 
 // Nueva Tarea
 router.get('/tareas/add',renderTareaForm);
@@ -12,10 +12,13 @@ router.post('/tareas/nueva-tarea',crearNuevaTarea);
 router.get('/tareas',renderTareas); 
 
 // Editar Tarea
-router.get('/tareas/edit/:id',renderEditarTarea);
-router.put('/tareas/edit/:id',actualizarTarea);
+router.get('/tareas/editar/:id', renderEditForm);
+
+// Actualizar tarea
+router.post('/tareas/actualizar/:id', actualizarTarea);
 
 // Eliminar Tarea
-router.delete('/tareas/delete/:id',eliminarTarea);
+router.delete('/tareas/delete/:id', deleteTarea );
+
 
 module.exports = router;

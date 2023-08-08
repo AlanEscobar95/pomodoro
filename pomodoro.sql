@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-08-2023 a las 18:54:20
+-- Tiempo de generación: 07-08-2023 a las 20:29:10
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -28,13 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `grupos` (
-  `idGrupos` int(11) NOT NULL,
-  `idMiembros` int(11) NOT NULL,
-  `nombreGrupo` varchar(99) DEFAULT NULL,
-  `descripcionGrupo` varchar(1500) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `nombre` varchar(99) DEFAULT NULL,
+  `descripcion` varchar(1500) DEFAULT NULL,
   `crearGrupo` timestamp NOT NULL DEFAULT current_timestamp(),
   `actualizarGrupo` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 -- --------------------------------------------------------
 
@@ -43,25 +42,27 @@ CREATE TABLE `grupos` (
 --
 
 CREATE TABLE `miembros` (
-  `idMiembros` int(11) NOT NULL,
-  `nombreMiembro` varchar(99) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `grupoId` int(11) NOT NULL,
+  `pomodorosId` int(11) NOT NULL,
+  `nombre` varchar(99) DEFAULT NULL,
   `crearMiembro` timestamp NOT NULL DEFAULT current_timestamp(),
   `actualizarMiembro` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `miembros_tareas`
+-- Estructura de tabla para la tabla `miembros-tareas`
 --
 
-CREATE TABLE `miembros_tareas` (
-  `idMiembrosTareas` int(11) NOT NULL,
-  `idMiembros` int(11) NOT NULL,
-  `idTareas` int(11) NOT NULL,
-  `crearMiembroTareas` timestamp NOT NULL DEFAULT current_timestamp(),
-  `actualizarMiembroTareas` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+CREATE TABLE `miembros-tareas` (
+  `id` int(11) NOT NULL,
+  `tareasId` int(11) NOT NULL,
+  `miembrosId` int(11) NOT NULL,
+  `crearMiembrosTareas` timestamp NOT NULL DEFAULT current_timestamp(),
+  `actualizarMiembrosTareas` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 -- --------------------------------------------------------
 
@@ -70,29 +71,28 @@ CREATE TABLE `miembros_tareas` (
 --
 
 CREATE TABLE `pomodoros` (
-  `idPomodoros` int(11) NOT NULL,
-  `idTareas` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `registroPomodorosId` int(11) NOT NULL,
   `fechaInicio` datetime DEFAULT NULL,
   `fechaFin` datetime DEFAULT NULL,
   `crearPomodoro` timestamp NOT NULL DEFAULT current_timestamp(),
   `actualizarPomodoro` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `registro_pomodoros`
+-- Estructura de tabla para la tabla `registro-pomodoros`
 --
 
-CREATE TABLE `registro_pomodoros` (
-  `idRegistro` int(11) NOT NULL,
-  `idPomodoros` int(11) NOT NULL,
+CREATE TABLE `registro-pomodoros` (
+  `id` int(11) NOT NULL,
   `horaInicio` time DEFAULT NULL,
   `horaFin` time DEFAULT NULL,
   `incidencia` varchar(255) DEFAULT NULL,
   `crearRegistro` timestamp NOT NULL DEFAULT current_timestamp(),
   `actualizarRegistro` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 -- --------------------------------------------------------
 
@@ -101,30 +101,11 @@ CREATE TABLE `registro_pomodoros` (
 --
 
 CREATE TABLE `roles` (
-  `idRoles` int(11) NOT NULL,
-  `nombreRol` varchar(99) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `nombre` varchar(99) DEFAULT NULL,
   `crearRol` timestamp NOT NULL DEFAULT current_timestamp(),
   `actualizarRol` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `sessions`
---
-
-CREATE TABLE `sessions` (
-  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `expires` int(11) UNSIGNED NOT NULL,
-  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `sessions`
---
-
-INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
-('TBgrTqCncGwXzpOGiSed_yLMM_Ql8hU_', 1691081639, '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"flash\":{}}');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 -- --------------------------------------------------------
 
@@ -133,13 +114,20 @@ INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
 --
 
 CREATE TABLE `tareas` (
-  `idTareas` int(11) NOT NULL,
-  `nombreTarea` varchar(255) DEFAULT NULL,
-  `descripcionTarea` varchar(1500) DEFAULT NULL,
-  `estadoTarea` varchar(50) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(1500) DEFAULT NULL,
+  `estado` varchar(50) DEFAULT NULL,
   `crearTarea` timestamp NOT NULL DEFAULT current_timestamp(),
   `actualizarTarea` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
+
+--
+-- Volcado de datos para la tabla `tareas`
+--
+
+INSERT INTO `tareas` (`id`, `nombre`, `descripcion`, `estado`, `crearTarea`, `actualizarTarea`) VALUES
+(1, 'Nueva Tarea', 'Hola soy una tarea', 'Finalizada', '2023-08-06 01:26:14', '2023-08-06 01:26:14');
 
 -- --------------------------------------------------------
 
@@ -148,14 +136,27 @@ CREATE TABLE `tareas` (
 --
 
 CREATE TABLE `usuarios` (
-  `idUsuarios` int(11) NOT NULL,
-  `idRoles` int(11) NOT NULL,
-  `correoUsuario` varchar(255) DEFAULT NULL,
-  `nombreUsuario` varchar(99) DEFAULT NULL,
-  `passwordUsuario` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `nombre` varchar(99) DEFAULT NULL,
+  `correo` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `crearUsuario` timestamp NOT NULL DEFAULT current_timestamp(),
   `actualizarUsuario` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios-roles`
+--
+
+CREATE TABLE `usuarios-roles` (
+  `id` int(11) NOT NULL,
+  `crearUsuarioRol` timestamp NOT NULL DEFAULT current_timestamp(),
+  `actualizarUsuarioRol` timestamp NOT NULL DEFAULT current_timestamp(),
+  `usuarioId` int(11) DEFAULT NULL,
+  `roleId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 --
 -- Índices para tablas volcadas
@@ -165,61 +166,62 @@ CREATE TABLE `usuarios` (
 -- Indices de la tabla `grupos`
 --
 ALTER TABLE `grupos`
-  ADD PRIMARY KEY (`idGrupos`),
-  ADD KEY `idMiembros` (`idMiembros`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `miembros`
 --
 ALTER TABLE `miembros`
-  ADD PRIMARY KEY (`idMiembros`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `grupoId` (`grupoId`),
+  ADD KEY `pomodorosId` (`pomodorosId`);
 
 --
--- Indices de la tabla `miembros_tareas`
+-- Indices de la tabla `miembros-tareas`
 --
-ALTER TABLE `miembros_tareas`
-  ADD PRIMARY KEY (`idMiembrosTareas`),
-  ADD KEY `idMiembros` (`idMiembros`),
-  ADD KEY `idTareas` (`idTareas`);
+ALTER TABLE `miembros-tareas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tareasId` (`tareasId`,`miembrosId`),
+  ADD KEY `miembrosId` (`miembrosId`);
 
 --
 -- Indices de la tabla `pomodoros`
 --
 ALTER TABLE `pomodoros`
-  ADD PRIMARY KEY (`idPomodoros`),
-  ADD KEY `idTareas` (`idTareas`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `registroPomodorosId` (`registroPomodorosId`);
 
 --
--- Indices de la tabla `registro_pomodoros`
+-- Indices de la tabla `registro-pomodoros`
 --
-ALTER TABLE `registro_pomodoros`
-  ADD PRIMARY KEY (`idRegistro`),
-  ADD KEY `idPomodoros` (`idPomodoros`);
+ALTER TABLE `registro-pomodoros`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
-  ADD PRIMARY KEY (`idRoles`);
-
---
--- Indices de la tabla `sessions`
---
-ALTER TABLE `sessions`
-  ADD PRIMARY KEY (`session_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  ADD PRIMARY KEY (`idTareas`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`idUsuarios`),
-  ADD KEY `idRoles` (`idRoles`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarios-roles`
+--
+ALTER TABLE `usuarios-roles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuarioId` (`usuarioId`),
+  ADD KEY `roleId` (`roleId`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -229,84 +231,86 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `grupos`
 --
 ALTER TABLE `grupos`
-  MODIFY `idGrupos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `miembros`
 --
 ALTER TABLE `miembros`
-  MODIFY `idMiembros` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `miembros_tareas`
+-- AUTO_INCREMENT de la tabla `miembros-tareas`
 --
-ALTER TABLE `miembros_tareas`
-  MODIFY `idMiembrosTareas` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `miembros-tareas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pomodoros`
 --
 ALTER TABLE `pomodoros`
-  MODIFY `idPomodoros` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `registro_pomodoros`
+-- AUTO_INCREMENT de la tabla `registro-pomodoros`
 --
-ALTER TABLE `registro_pomodoros`
-  MODIFY `idRegistro` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `registro-pomodoros`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idRoles` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `idTareas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuarios` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios-roles`
+--
+ALTER TABLE `usuarios-roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `grupos`
+-- Filtros para la tabla `miembros`
 --
-ALTER TABLE `grupos`
-  ADD CONSTRAINT `grupos_ibfk_1` FOREIGN KEY (`idMiembros`) REFERENCES `miembros` (`idMiembros`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `miembros`
+  ADD CONSTRAINT `miembros_ibfk_1` FOREIGN KEY (`grupoId`) REFERENCES `grupos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `miembros_ibfk_2` FOREIGN KEY (`pomodorosId`) REFERENCES `pomodoros` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `miembros_tareas`
+-- Filtros para la tabla `miembros-tareas`
 --
-ALTER TABLE `miembros_tareas`
-  ADD CONSTRAINT `miembros_tareas_ibfk_1` FOREIGN KEY (`idMiembros`) REFERENCES `miembros` (`idMiembros`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `miembros_tareas_ibfk_2` FOREIGN KEY (`idTareas`) REFERENCES `tareas` (`idTareas`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `miembros-tareas`
+  ADD CONSTRAINT `miembros-tareas_ibfk_1` FOREIGN KEY (`miembrosId`) REFERENCES `miembros` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `miembros-tareas_ibfk_2` FOREIGN KEY (`tareasId`) REFERENCES `tareas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pomodoros`
 --
 ALTER TABLE `pomodoros`
-  ADD CONSTRAINT `pomodoros_ibfk_1` FOREIGN KEY (`idTareas`) REFERENCES `tareas` (`idTareas`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pomodoros_ibfk_1` FOREIGN KEY (`registroPomodorosId`) REFERENCES `registro-pomodoros` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `registro_pomodoros`
+-- Filtros para la tabla `usuarios-roles`
 --
-ALTER TABLE `registro_pomodoros`
-  ADD CONSTRAINT `registro_pomodoros_ibfk_1` FOREIGN KEY (`idPomodoros`) REFERENCES `pomodoros` (`idPomodoros`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idRoles`) REFERENCES `roles` (`idRoles`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `usuarios-roles`
+  ADD CONSTRAINT `usuarios-roles_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarios-roles_ibfk_2` FOREIGN KEY (`roleId`) REFERENCES `roles` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
