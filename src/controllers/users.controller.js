@@ -1,4 +1,5 @@
 const usersCtrl = {};
+const passport = require('passport');
 const bcrypt = require('bcrypt');
 const pool = require("../dataBase/dataBase.sql");
 
@@ -64,11 +65,21 @@ usersCtrl.renderSignInForm = (req, res) => {
     res.render('users/signin');
 };
 
-usersCtrl.signin = (req, res) => {
-    res.send('signin');
-};
+usersCtrl.signin = passport.authenticate('local', {
+        failureRedirect: '/users/signin',
+        successRedirect: '/tareas',
+        failureFlash: true
+    });
+
 
 usersCtrl.logout = (req, res) => {
-    res.send('logout');
+    req.logout(function(err) {
+        if (err) {
+          console.error(err);
+          return res.status(500).send('Error al cerrar la sesión');
+        }
+        req.flash('success_msg', 'Sesión cerrada exitosamente');
+        res.redirect('/users/signin');
+      });
 };
 module.exports = usersCtrl;
