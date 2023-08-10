@@ -1,13 +1,13 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt'); // Import bcrypt module
+const bcrypt = require('bcrypt');
 
 const pool = require("../dataBase/dataBase.sql");
 
 passport.use(new LocalStrategy({
     usernameField: 'correo',
     passwordField: 'password',
-    passReqToCallback: true // Pass req as an argument to the callback
+    passReqToCallback: true 
 }, async (req, correo, password, done) => {
     try {
         // Comprobar si el correo existe

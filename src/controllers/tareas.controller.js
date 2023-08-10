@@ -6,10 +6,11 @@ tareasCtrl.renderTareaForm = (req, res) => {
 };
 
 tareasCtrl.crearNuevaTarea = async (req, res) => {
-    const { nombre, descripcion, estado } = req.body;
+    const { nombre, descripcion, estado} = req.body;
+    
     try {
-        const query = "INSERT INTO tareas(nombre, descripcion, estado) VALUES (?, ?, ?)";
-        await pool.query(query, [nombre, descripcion, estado]);
+        const query = "INSERT INTO tareas(nombre, descripcion, estado, user) VALUES (?, ?, ?, ?)";
+        await pool.query(query, [nombre, descripcion, estado,req.user.id]);
         req.flash('success_msg', 'Tarea creada exitosamente');
         res.redirect('/tareas');
     } catch (error) {
@@ -18,10 +19,17 @@ tareasCtrl.crearNuevaTarea = async (req, res) => {
     }
 };
 
+
 tareasCtrl.renderTareas = async (req, res) => {
-    const tareas = await pool.query("SELECT * FROM tareas");
-    res.render('tareas/lista-tareas', { tareas });
+    try {
+        const tareas = await pool.query("SELECT * FROM tareas WHERE user = ?", [req.user.id]);
+        res.render('tareas/lista-tareas', { tareas });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al obtener las tareas');
+    }
 };
+
 
 tareasCtrl.renderEditForm = async (req, res) => {
     const taskId = req.params.id;
