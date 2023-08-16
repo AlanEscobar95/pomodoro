@@ -62,6 +62,7 @@ app.use((req, res, next) => {
 app.use(require('./routes/index.routes'));
 app.use(require('./routes/tareas.routes'));
 app.use(require('./routes/users.routes'));
+app.use(require('./routes/break.routes'));
 
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));

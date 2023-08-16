@@ -1,0 +1,162 @@
+
+
+#titulo{
+text-align: center;
+color: #000;
+    text-align: center;
+    font-family: 'Reem Kufi';
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 2%;
+}
+
+  .navbar {
+    background-color: #333;
+    display: flex;
+    height: 65px;
+  }
+  .navbar h1{
+    color: white;
+text-align: left;  
+}
+  
+.navbar button{
+    justify-content: right;
+    align-items: right;
+}
+  .nav-button {
+    font-family: 'Roboto';
+    font-weight: 700;
+    background-color: #88BBCC; /* Color celeste pastel */
+    border: none;
+    border-radius: 10%;
+    color: rgb(39, 39, 39); /* Color del texto */
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  .nav-button:hover {
+    background-color: #fdfdfd;
+    color: #000;
+  }
+  
+ 
+
+  #contenedor {
+    top: 30%;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr); /* Divide en 2 filas iguales */
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding-right: 20%;
+    padding-left: 20%;
+    text-align: center;
+    color: rgba(21, 48, 71, 0.80);
+    font-family: Roboto;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
+  .circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 20%;
+  }
+  
+  .a {
+    background-color: #688f90;
+    opacity: 0.6;
+  }
+  
+  .b{
+    background-color: #8e7595;
+    opacity: 0.6;
+
+  }
+  
+  .c {
+    background-color: #b58199;
+    opacity: 0.6;
+
+  }
+  
+  .d {
+    background-color: #c29f6f;
+        opacity: 0.6;
+
+  }
+  
+  .e {
+    background-color: #c08441;
+    opacity: 0.6;
+
+  }
+  
+  .paragraph {
+    border: 1px solid #ccc;
+    opacity: 0.6;
+
+    padding: 10px;
+  }
+  
+
+#recuadro{
+    margin-top:2%;
+}
+
+
+.cuadro {
+    width: 90px;
+    height: 20px;
+    border-radius: 25%;
+    margin-left: 20%;
+  }
+  
+  .a {
+    background-color: #688f90;
+    opacity: 0.6;
+  }
+  
+  .b{
+    background-color: #8e7595;
+    opacity: 0.6;
+
+  }
+  
+  .c {
+    background-color: #b58199;
+    opacity: 0.6;
+
+  }
+  
+  .d {
+    background-color: #c29f6f;
+        opacity: 0.6;
+
+  }
+  
+  .e {
+    background-color: #c08441;
+    opacity: 0.6;
+
+  }
+
+  .circle img{
+    position: absolute;
+    margin-left: -2.5%;
+    margin-top: 1%;
+    width: 5%;
+    height: 10%;
+}

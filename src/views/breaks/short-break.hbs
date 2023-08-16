@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/src/public/css/shortBreak.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,0,200" />
+<link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,700,1,200" />
+<link href='https://fonts.googleapis.com/css?family=Reem Kufi' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
+<!--    CONTENEDOR GENERAL   !-->
+
+<body id="contenedor">
+    <!--    MENU LATERAL   !-->
+    <div id="menu">
+        <div id="botones">
+            <div id="titulo">
+                <n1>OPTIONS</n1>
+            </div>
+            <div id="boton1">
+                <button class="boton-celeste">
+                    <a href="/tareas/add"><img src="/src/public/img/lista.png">
+                        <p>Add Task</p>
+                    </a>
+                </button>
+            </div><br>
+            <div id="boton2">
+                <button class="boton-celeste">
+                    <img src="/src/public/img/grupo-de-chat (1).png">
+                    <p>Team Activity</p>
+                </button>
+            </div><br>
+            <div id="boton3">
+                <button class="boton-celeste">
+                    <img src="/src/public/img/rompecabezas.png">
+                    <p>Activity</p>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--    CONTENIDO DERECHO   !-->
+    <div id="derecha">
+        <div id="titulo2">
+            <img src="/src/public/img/taza-de-cafe.png">
+            <h1>Short Break</h1>
+        </div>
+        <div class="pomodoro-container">
+            <div id="reloj" class="row-container clock-container">
+                <h2 id="digit">5:00</h2>
+            </div>
+        </div>
+        <div id="botones2">
+            <div id="Bizquierda">
+                <button class="boton-celeste">
+                    <a href="/breaks/long-break">
+                        <span class="material-symbols-rounded">navigate_next</span>
+                    </a>
+                </button>
+            </div>
+            <div id="Bcentro">
+                <button class="boton-celeste">
+                    <span class="material-symbols-rounded" id="shortBreak-button">play_arrow</span>
+                </button>
+            </div>
+            <div id="Bderecha">
+                <button class="boton-celeste">
+                    <a href="/breaks/break">
+                        <span class="material-symbols-rounded">navigate_next</span>
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/src/public/js/short-break.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</html>

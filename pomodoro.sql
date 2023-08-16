@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-08-2023 a las 20:29:10
+-- Tiempo de generación: 16-08-2023 a las 01:55:09
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -118,6 +118,7 @@ CREATE TABLE `tareas` (
   `nombre` varchar(255) DEFAULT NULL,
   `descripcion` varchar(1500) DEFAULT NULL,
   `estado` varchar(50) DEFAULT NULL,
+  `user` varchar(255) NOT NULL,
   `crearTarea` timestamp NOT NULL DEFAULT current_timestamp(),
   `actualizarTarea` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
@@ -126,8 +127,9 @@ CREATE TABLE `tareas` (
 -- Volcado de datos para la tabla `tareas`
 --
 
-INSERT INTO `tareas` (`id`, `nombre`, `descripcion`, `estado`, `crearTarea`, `actualizarTarea`) VALUES
-(1, 'Nueva Tarea', 'Hola soy una tarea', 'Finalizada', '2023-08-06 01:26:14', '2023-08-06 01:26:14');
+INSERT INTO `tareas` (`id`, `nombre`, `descripcion`, `estado`, `user`, `crearTarea`, `actualizarTarea`) VALUES
+(13, 'Crear un formulario', 'Crear', 'Pendiente', '5', '2023-08-10 00:38:56', '2023-08-10 00:38:56'),
+(14, 'Nueva Tarea', 'Hola', 'En proceso', '5', '2023-08-10 00:40:17', '2023-08-10 00:40:17');
 
 -- --------------------------------------------------------
 
@@ -137,12 +139,22 @@ INSERT INTO `tareas` (`id`, `nombre`, `descripcion`, `estado`, `crearTarea`, `ac
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(99) DEFAULT NULL,
-  `correo` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `nombre` varchar(99) NOT NULL,
+  `correo` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `crearUsuario` timestamp NOT NULL DEFAULT current_timestamp(),
   `actualizarUsuario` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `password`, `crearUsuario`, `actualizarUsuario`) VALUES
+(5, 'Alan', 'arp.escobar@yavirac.edu.ec', '$2b$10$SIrdudJOMR/ELqyzDTZEFOVFM5lAw4aB2oakCjvHJ/OFf7WiCMsc.', '2023-08-09 00:23:38', '2023-08-09 00:23:38'),
+(6, 'Alan Escobar', 'alanescobar.p@gmail.com', '$2b$10$ywmy62yjbJfVYV7SAwi/2OXxLLxuCZlWFsMJSNzCFYsTgotFqYQ5K', '2023-08-09 01:19:07', '2023-08-09 01:19:07'),
+(7, 'alan', 'alan@gmail.com', '$2b$10$sQqf5JcxMiehK.ygYgjEe.Tu7LYo6xSFp57/5PjZoqBv2Zf2Ov/G.', '2023-08-09 02:43:26', '2023-08-09 02:43:26'),
+(8, 'Alan', 'alanescobar@gmail.com', '$2b$10$P1pe/4Ba0vRHWcrLQSArxufT3YPb8HAM.RzvVgiyhqOluXQa99mfa', '2023-08-10 03:17:46', '2023-08-10 03:17:46');
 
 -- --------------------------------------------------------
 
@@ -267,13 +279,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios-roles`
